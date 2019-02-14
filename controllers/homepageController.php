@@ -1,7 +1,4 @@
 <?php
-    require_once '../config.php';
-    require_once '../models/model.php';
-
     class HomepageController {
         public $model;
         public function __construct() {

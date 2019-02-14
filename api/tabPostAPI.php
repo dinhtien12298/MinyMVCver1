@@ -1,4 +1,7 @@
 <?php
+    require_once '../config.php';
+    require_once '../models/model.php';
+
     class TabPostAPI {
         public $model;
         public function __construct() {
