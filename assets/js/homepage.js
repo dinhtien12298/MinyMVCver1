@@ -18,7 +18,7 @@ for (let i = 0; i < subjectTab.length; i++) {
             if (k == parseInt(i/4) + 1) {
                 axios({
                     method: 'GET',
-                    url: "/minyMVC/controllers/tabpostHomepageAPI.php",
+                    url: "/minyMVC/api/tabPostAPI.php",
                     params: {
                         "subjectid": subjectTab[i].dataset.subjectid,
                     }

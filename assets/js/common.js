@@ -199,7 +199,7 @@ var searchContent = document.getElementsByClassName('search-content')[0];
 searchBar.oninput = function () {
     axios({
         method: 'GET',
-        url: "/minyMVC/controllers/searchPostAPI.php",
+        url: "/minyMVC/api/searchPostAPI.php",
         params: {
             "keyword": searchBar.value,
         }
