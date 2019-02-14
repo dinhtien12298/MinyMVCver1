@@ -5,7 +5,10 @@
             $this->model = new model();
             $class = isset($_GET['class']) ? $_GET['class'] : '';
             $subject = isset($_GET['subject']) ? $_GET['subject'] : '';
-            if (isset($_GET['subject'])) {
+            if (isset($_GET['subject']) || $class == 'Mới nhất') {
+                $page = ($_GET['page']);
+                $start_number = 9 * ($page - 1);
+
                 function calculatePageNumber($data) {
                     if (sizeof($data) % 9 == 0) {
                         $page_button = sizeof($data) / 9;
@@ -15,30 +18,48 @@
                     return $page_button;
                 }
 
-                // Lấy dữ liệu
-                $all_posts = $this->model->fetchAllRecords("
-                    SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
-                    FROM users, subjects, classes, posts
-                    WHERE users.id = posts.user_id AND
-                    classes.id = subjects.class_id AND
-                    subjects.id = posts.subject_id AND 
-                    classes.class = '$class' AND 
-                    subjects.subject = '$subject' 
-                ");
+                if ($class == 'Mới nhất') {
+                    $all_posts = $this->model->fetchAllRecords("
+                        SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
+                        FROM users, subjects, classes, posts
+                        WHERE users.id = posts.user_id AND
+                        classes.id = subjects.class_id AND
+                        subjects.id = posts.subject_id
+                        LIMIT 27
+                    ");
 
-                $page = ($_GET['page']);
-                $start_number = 9 * ($page - 1);
+                    $data_content = $this->model->fetchAllRecords("
+                        SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
+                        FROM users, subjects, classes, posts
+                        WHERE users.id = posts.user_id AND
+                        classes.id = subjects.class_id AND
+                        subjects.id = posts.subject_id
+                        LIMIT $start_number, 9
+                    ");
+                } else {
+                    $all_posts = $this->model->fetchAllRecords("
+                        SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
+                        FROM users, subjects, classes, posts
+                        WHERE users.id = posts.user_id AND
+                        classes.id = subjects.class_id AND
+                        subjects.id = posts.subject_id AND 
+                        classes.class = '$class' AND 
+                        subjects.subject = '$subject' 
+                    ");
+
+                    $data_content = $this->model->fetchAllRecords("
+                        SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
+                        FROM users, subjects, classes, posts
+                        WHERE users.id = posts.user_id AND
+                        classes.id = subjects.class_id AND
+                        subjects.id = posts.subject_id AND 
+                        classes.class = '$class' AND 
+                        subjects.subject = '$subject' 
+                        LIMIT $start_number, 9
+                    ");
+                }
+
                 $page_button = calculatePageNumber($all_posts);
-                $data_content = $this->model->fetchAllRecords("
-                    SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
-                    FROM users, subjects, classes, posts
-                    WHERE users.id = posts.user_id AND
-                    classes.id = subjects.class_id AND
-                    subjects.id = posts.subject_id AND 
-                    classes.class = '$class' AND 
-                    subjects.subject = '$subject' 
-                    LIMIT $start_number, 9
-                ");
 
                 require_once 'views/categoryDetail.php';
             } else {
