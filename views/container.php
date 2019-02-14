@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <!-- Link CSS -->
     <link rel="stylesheet" href="assets/css/common.css">
-    <link rel="stylesheet" href="assets/css/<?php echo $controller ?>.css">
+    <?php
+        if (file_exists("assets/css/$controller.css")) { ?>
+            <link rel="stylesheet" href="assets/css/<?php echo $controller ?>.css">
+        <?php }
+    ?>
     <!-- Import WebLogo -->
     <link rel="icon" href="assets/images/all/logo-web.png">
     <title>Miny</title>
@@ -29,6 +33,20 @@
     ?>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/common.js"></script>
-    <script src="./assets/js/<?php echo $controller ?>.js"></script>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <?php
+        if (file_exists("./assets/js/$controller.js")) { ?>
+            <script src="./assets/js/<?php echo $controller ?>.js"></script>
+        <?php }
+    ?>
 </body>
 </html>

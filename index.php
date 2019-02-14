@@ -13,7 +13,6 @@
     }
 
     $file_controller = "controllers/$controller" . "Controller.php";
-
     if (file_exists($file_controller)) {
         require_once 'views/container.php';
     } else {
