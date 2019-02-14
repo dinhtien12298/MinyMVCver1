@@ -168,13 +168,13 @@ var breadcrumbTags = document.getElementsByClassName('breadcrumb-tag');
 for (let i = 0; i < breadcrumbTags.length; i++) {
     breadcrumbTags[i].onclick = function() {
         if (i == 0) {
-            window.location.href = `/miny/homepage.php`;
+            window.location.href = `/minyMVC/index.php`;
         }
         else if (i == 1) {
-            window.location.href = `/miny/category.php?class=${breadcrumbTags[1].innerHTML}`;
+            window.location.href = `/minyMVC/index.php?class=${breadcrumbTags[1].innerHTML}`;
         }
         else if (i == 2) {
-            window.location.href = `/miny/category.php?class=${breadcrumbTags[1].innerHTML}&subject=${breadcrumbTags[2].innerHTML}&page=1`;
+            window.location.href = `/minyMVC/index.php?class=${breadcrumbTags[1].innerHTML}&subject=${breadcrumbTags[2].innerHTML}&page=1`;
         }
     }
 }
@@ -199,7 +199,7 @@ var searchContent = document.getElementsByClassName('search-content')[0];
 searchBar.oninput = function () {
     axios({
         method: 'GET',
-        url: "/miny/controllers/searchPostAPI.php",
+        url: "/minyMVC/controllers/searchPostAPI.php",
         params: {
             "keyword": searchBar.value,
         }
@@ -207,7 +207,7 @@ searchBar.oninput = function () {
         if (response.data && response.data.length > 0) {
             var posts = response.data;
             var postHTML = posts.map(
-                post => `<a class="found-post" data-postId="${ post['id'] }" onclick="directTo('/miny/detail.php?post=${ post['id'] }')"><p>${ post['title'] }</p></a>`
+                post => `<a class="found-post" data-postId="${ post['id'] }" onclick="directTo('/minyMVC/index.php?post=${ post['id'] }')"><p>${ post['title'] }</p></a>`
             );
             searchContent.innerHTML = `${postHTML.join("")}`;
         }

@@ -18,7 +18,7 @@ for (let i = 0; i < subjectTab.length; i++) {
             if (k == parseInt(i/4) + 1) {
                 axios({
                     method: 'GET',
-                    url: "/miny/controllers/contentHomepageAPI.php",
+                    url: "/minyMVC/controllers/tabpostHomepageAPI.php",
                     params: {
                         "subjectid": subjectTab[i].dataset.subjectid,
                     }
@@ -59,7 +59,7 @@ for (let i = 0; i < viewAllTag.length; i++) {
         var subjectActive = document.getElementsByClassName('subject-active');
         for (let j = 0; j < subjectActive.length; j++) {
             if (j == parseInt(i/4)) {
-                window.location.href = `/miny/category.php?class=${viewAllTag[i].dataset.classname}&subject=${subjectActive[j].innerHTML}&page=1`;
+                window.location.href = `/minyMVC/index.php?class=${viewAllTag[i].dataset.classname}&subject=${subjectActive[j].innerHTML}&page=1`;
             }
         }
     }
