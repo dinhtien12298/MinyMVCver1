@@ -4,7 +4,7 @@
         public function fetchAllRecords($query) {
             global $conn;
             $sql_query = mysqli_query($conn, $query);
-            $list_data = array();
+            $list_data = [];
             while ($result = mysqli_fetch_object($sql_query)) {
                 array_push($list_data, $result);
             }

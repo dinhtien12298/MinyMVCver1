@@ -1,5 +1,5 @@
 <?php
-    if (isset($_GET['class']) || isset($_GET['id'])) { ?>
+    if (isset($_GET['class']) || isset($_GET['post'])) { ?>
         <div id="banner">
             <div class="container">
                 <div class="breadcrumb f-regular-13">
@@ -9,7 +9,7 @@
                     <div><?php echo $breadcrumb[sizeof($breadcrumb) - 1] ?></div>
                 </div>
                 <div class="banner-heading f-bold-30">
-                    <?php if (isset($_GET['id'])) {
+                    <?php if (isset($_GET['post'])) {
                         echo $post->subject . ' - ' . $post->title;
                     } else {
                         echo $_GET['class'] . ' - GIẢI BÀI TẬP ' . $_GET['class'];

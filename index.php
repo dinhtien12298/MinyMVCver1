@@ -6,7 +6,7 @@
 
     if (isset($_GET['class'])) {
         $controller = 'category';
-    } elseif (isset($_GET['id'])) {
+    } elseif (isset($_GET['post'])) {
         $controller = 'detail';
     } else {
         $controller = 'homepage';
