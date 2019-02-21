@@ -1,9 +1,18 @@
 <?php
     class BannerController {
         public $model;
-        public function __construct() {
+        public function __construct()
+        {
             $this->model = new model();
+            $class = isset($_GET['class']) ? $_GET['class'] : '';
+            $post_id = isset($_GET['post']) ? $_GET['post'] : '';
+            $post = isset($_GET['post']) ? $this->model->postInfoForBanner($post_id) : '';
+            $banner_title = isset($_GET['post']) ? "$post->subject - $post->title" : "$class - GIẢI BÀI TẬP $class";
+            $breadcrumb = $this->breadcrumb($post);
+            require_once 'views/components/banner.php';
+        }
 
+        private function breadcrumb($post) {
             $breadcrumb = ['trang chủ'];
             if (isset($_GET['class'])) {
                 array_push($breadcrumb, $_GET['class']);
@@ -12,15 +21,6 @@
                 array_push($breadcrumb, $_GET['subject']);
             }
             if (isset($_GET['post'])) {
-                $post_id = $_GET['post'];
-                $post = $this->model->fetchARecord("
-                    SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
-                    FROM users, subjects, classes, posts
-                    WHERE users.id = posts.user_id AND
-                    classes.id = subjects.class_id AND
-                    subjects.id = posts.subject_id AND 
-                    posts.id = $post_id
-                ");
                 if  (!in_array($post->class, $breadcrumb)) {
                     array_push($breadcrumb, $post->class);
                 }
@@ -29,9 +29,7 @@
                 }
                 array_push($breadcrumb, $post->title);
             }
-
-            require_once 'views/components/banner.php';
+            return $breadcrumb;
         }
     }
-
     new BannerController();

@@ -24,12 +24,7 @@
                 </div>
                 <div class="line-orange"></div>
                 <div class="tab-post">
-                    <?php if (sizeof($data_content[$index]) >= 6) {
-                        $total_post = 6;
-                    } else {
-                        $total_post = sizeof($data_content[$index]);
-                    }
-                    for ($i = 0; $i < $total_post; $i++) { ?>
+                    <?php for ($i = 0; $i < sizeof($data_content[$index]); $i++) { ?>
                         <div class="post-model" onclick="directTo('/minyMVC/index.php?post=<?php echo $data_content[$index][$i]->id ?>')">
                             <div class="post-title">
                                 <a href="/minyMVC/index.php?post=<?php echo $data_content[$index][$i]->id ?>" class="f-medium-17"><?php echo $data_content[$index][$i]->title ?></a>

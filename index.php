@@ -8,6 +8,8 @@
         $controller = 'category';
     } elseif (isset($_GET['post'])) {
         $controller = 'detail';
+    } elseif (isset($_GET['user']) && isset($_SESSION['username'])) {
+        $controller = 'userMainHome';
     } else {
         $controller = 'homepage';
     }

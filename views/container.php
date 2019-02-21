@@ -11,13 +11,20 @@
             <link rel="stylesheet" href="assets/css/<?php echo $controller ?>.css">
         <?php }
     ?>
+    <!-- Import CKEDITOR -->
+    <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
     <!-- Import WebLogo -->
     <link rel="icon" href="assets/images/all/logo-web.png">
     <title>Miny</title>
 </head>
 <body>
+    <!-- LAYER OPACITY -->
     <div id="layer-opacity"></div>
+
+    <!-- SCROLL TO TOP -->
     <button id="scroll-top" onclick="scrollToTop(150, 5)"><i class="fas fa-angle-up"></i></button>
+
+    <!-- START MOBILE HEADER -->
     <div id="mobile-header" class="mobile-header d-none">
         <div id="icon-nav" onclick="isDisplay()"><i class="fas fa-bars"></i></div>
         <div class="search-container">
@@ -25,7 +32,12 @@
             <input class="f-regular-12" type="text" placeholder="Tìm kiếm câu hỏi">
         </div>
     </div>
+    <!-- END MOBILE HEADER -->
+
     <?php
+        require_once 'controllers/users/signUpController.php';
+        require_once 'controllers/users/loginController.php';
+        require_once 'controllers/users/logOutController.php';
         require_once 'controllers/components/menuController.php';
         require_once 'controllers/components/bannerController.php';
         require_once $file_controller;

@@ -19,12 +19,7 @@
                             </div>
                             <div class="line-orange"></div>
                             <div class="tab-post">
-                                <?php if (sizeof($list_posts) >= 3) {
-                                    $show_post = 3;
-                                } else {
-                                    $show_post = sizeof($list_posts);
-                                }
-                                for ($i = 0; $i < $show_post; $i++) {?>
+                                <?php for ($i = 0; $i < sizeof($list_posts); $i++) {?>
                                     <div class="post-model" onclick="directTo('/minyMVC/index.php?post=<?php echo $list_posts[$i]->id ?>')">
                                         <div class="post-title">
                                             <a href="/minyMVC/index.php?post=<?php echo $list_posts[$i]->id ?>" class="f-medium-17"><?php echo $list_posts[$i]->title ?></a>

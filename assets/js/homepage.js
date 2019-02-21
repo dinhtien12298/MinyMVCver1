@@ -27,7 +27,7 @@ for (let i = 0; i < subjectTab.length; i++) {
                         var posts = response.data;
                         var tabPostHTML = posts.map(
                             post => `
-                            <div class="post-model" data-location="/miny/detail.php?post=${ post.id }">
+                            <div class="post-model" onclick="directTo('/miny/detail.php?post=${ post.id }')">
                                 <div class="post-title">
                                     <a href="/miny/detail.php?post=${ post.id }" class="f-medium-17">${ post.title }</a>
                                 </div>

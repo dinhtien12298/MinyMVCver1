@@ -93,7 +93,11 @@
     box-shadow: 0 0 15px #999999;
 }
 
-#user-infomation .info-element {
+#user-infomation .user-infomation-content {
+    column-count: 2;
+}
+
+#user-infomation .user-infomation-content .info-element {
     width: 40%;
     min-width: 360px;
     margin: 0 auto;
@@ -102,29 +106,30 @@
     margin-bottom: 15px;
 }
 
-#user-infomation .info-element:hover {
+#user-infomation .user-infomation-content .info-element:hover {
     box-shadow: 0 0 15px #777777;
     cursor: pointer;
 }
 
-#user-infomation .info-element div {
+#user-infomation .user-infomation-content .info-element div {
     width: 50%;
     padding: 15px 5px;
     text-align: center;
     box-sizing: border-box;
 }
 
-#user-infomation .info-element .info-name {
+#user-infomation .user-infomation-content .info-element .info-name {
     background: #777777;
     color: #ffffff;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
 }
 
-#user-infomation .info-element .info-content {
+#user-infomation .user-infomation-content .info-element .info-content {
     color: #333333;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
+    overflow: hidden;
 }
 
 /* Form đăng bài */
@@ -176,12 +181,17 @@
     font-size: 15px;
 }
 
-#post-create .form-element input {
+#post-create .form-element input,
+#post-create .form-element select {
     background: #ffffff;
     padding: 10px;
     border-radius: 5px;
     border: #ff9900 solid 2px;
     outline: none;
+}
+
+#post-create .form-element select option {
+    text-transform: capitalize;
 }
 
 #post-create .double-element {
@@ -219,7 +229,7 @@
 
 /* Quản lý bài viết */
 #post-management {
-    height: 350px;
+    max-height: 350px;
     overflow: auto;
     box-shadow: 0 0 10px #999999;
     width: 80%;

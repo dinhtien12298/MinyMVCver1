@@ -64,6 +64,10 @@ body {
     transition: 0.2s ease-in-out;
 }
 
+.signup-container .login-form {
+    width: 50%;
+}
+
 .login-form .close-form {
     position: absolute;
     top: 15px;
@@ -87,6 +91,11 @@ body {
     padding: 25px 0;
 }
 
+.main-form .input-container {
+    column-count: 2;
+    column-gap: 10px;
+}
+
 .main-form input {
     display: block;
     width: 85%;
@@ -107,6 +116,20 @@ body {
     text-align: center;
 }
 
+.main-form .login-messages {
+    color: #ff9900;
+    width: 85%;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
+.main-form .signup-messages {
+    color: #ff9900;
+    width: 93%;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
 .main-form button {
     display: block;
     background: #26af92;
@@ -122,6 +145,10 @@ body {
 .main-form button:hover {
     cursor: pointer;
     background: #008F73;
+}
+
+.signup-container .main-form button {
+    width: 93%;
 }
 
 .footer-form {

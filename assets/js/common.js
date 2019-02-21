@@ -179,20 +179,6 @@ for (let i = 0; i < breadcrumbTags.length; i++) {
     }
 }
 
-// Click Logout
-if (document.getElementById('logout-button')) {
-    document.getElementById('logout-button').onclick = function() {
-        window.location.href = `${document.getElementById('logout-button').dataset.location}`;
-    }
-}
-
-// Click User Homepage
-if (document.getElementById('user-homepage')) {
-    document.getElementById('user-homepage').onclick = function () {
-        window.location.href = `${document.getElementById('user-homepage').dataset.location}`;
-    }
-}
-
 // Searching
 const searchBar = document.getElementById('search');
 var searchContent = document.getElementsByClassName('search-content')[0];
@@ -200,9 +186,7 @@ searchBar.oninput = function () {
     axios({
         method: 'GET',
         url: "/minyMVC/api/searchPostAPI.php",
-        params: {
-            "keyword": searchBar.value,
-        }
+        params: { "keyword": searchBar.value }
     }).then(response => {
         if (response.data && response.data.length > 0) {
             var posts = response.data;
@@ -220,4 +204,83 @@ searchBar.oninput = function () {
 function directTo(place) {
     window.location.href = place;
     searchContent.innerHTML = ``;
+}
+
+// logOut
+function logOut() {
+    var confirmCheck = confirm('Bạn có chắc chắn muốn đăng xuất?');
+    if (confirmCheck) {
+        window.location.href = '/minyMVC/index.php?logout';
+    }
+}
+
+// loginAPI
+if (document.getElementsByClassName('login-user')[0]) {
+    var loginUser = document.getElementsByClassName('login-user')[0];
+    loginUser.onclick = function(event) {
+        event.preventDefault();
+        const username = document.getElementsByClassName('username-input')[0].value;
+        const password = document.getElementsByClassName('password-input')[0].value;
+        var loginMessages = document.getElementsByClassName('login-messages')[0];
+        axios({
+            method: 'GET',
+            url: '/minyMVC/api/loginAPI.php',
+            params: {
+                'username': username,
+                'password': password
+            }
+        }).then(response => {
+            if (response.data) {
+                var message = response.data;
+                if (message == 'Đăng nhập thành công!') {
+                    window.location.href = `/minyMVC/index.php?loginAction&username=${username}`;
+                } else {
+                    loginMessages.innerHTML = message;
+                }
+            }
+        }).catch(error => console.log(error));
+    }
+}
+
+// signupAPI
+if (document.getElementsByClassName('signup-user')[0]) {
+    var loginUser = document.getElementsByClassName('signup-user')[0];
+    loginUser.onclick = function(event) {
+        event.preventDefault();
+        var confirmCheck = confirm('Bạn đã chắc với thông tin của mình chưa?');
+        if (confirmCheck) {
+            const username = document.getElementsByClassName('username-input')[0].value;
+            const fullname = document.getElementsByClassName('fullname-input')[0].value;
+            const password = document.getElementsByClassName('password-input')[0].value;
+            const confirmPassword = document.getElementsByClassName('confirm-password-input')[0].value;
+            const birth = document.getElementsByClassName('birth-input')[0].value;
+            const phone = document.getElementsByClassName('phone-input')[0].value;
+            const email = document.getElementsByClassName('email-input')[0].value;
+            const working = document.getElementsByClassName('working-input')[0].value;
+            var signupMessages = document.getElementsByClassName('signup-messages')[0];
+            axios({
+                method: 'GET',
+                url: '/minyMVC/api/signupAPI.php',
+                params: {
+                    'username': username,
+                    'fullname': fullname,
+                    'password': password,
+                    'confirm_password': confirmPassword,
+                    'birth': birth,
+                    'phone': phone,
+                    'email': email,
+                    'working': working
+                }
+            }).then(response => {
+                if (response.data) {
+                    var message = response.data;
+                    if (message == 'Đăng ký thành công!') {
+                        window.location.href = `/minyMVC/index.php?loginAction&username=${username}`;
+                    } else {
+                        signupMessages.innerHTML = message;
+                    }
+                }
+            }).catch(error => console.log(error));
+        }
+    }
 }

@@ -73,6 +73,20 @@
     cursor: pointer;
 }
 
+.page-button .etc:first-child {
+    margin-left: 30px;
+}
+
+.page-button .etc {
+    background: #999999;
+    border-radius: 50%;
+    border: #999999 solid 1px;
+    width: 4px;
+    height: 4px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
 .active-pagination-button {
     background: #ff9900 !important;
     color: #ffffff !important;

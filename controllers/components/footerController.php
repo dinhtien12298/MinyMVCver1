@@ -1,9 +1,14 @@
 <?php
     class FooterController {
         public $model;
-        public function __construct() {
+        public function __construct()
+        {
             $this->model = new model();
+            $data_footer = $this->dataFooter();
+            require_once 'views/components/footer.php';
+        }
 
+        private function dataFooter() {
             $data_footer = [];
             $data_check_name = [];
             $all_subjects = $this->model->fetchAllRecords("
@@ -20,9 +25,7 @@
                     break;
                 }
             }
-
-            require_once 'views/components/footer.php';
+            return $data_footer;
         }
     }
-
     new FooterController();

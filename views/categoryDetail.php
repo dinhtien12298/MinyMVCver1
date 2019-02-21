@@ -6,11 +6,7 @@
                 <div class="list-post">
                     <div class="tab-heading">
                         <div class="tab-title f-regular-30">
-                            <?php if ($_GET['class'] == 'Mới nhất') {
-                                echo $_GET['class'];
-                            } else {
-                                echo $_GET['subject'];
-                            } ?>
+                            <?php echo $tab_title ?>
                         </div>
                     </div>
                     <div class="line-orange"></div>
@@ -50,7 +46,12 @@
         <div class="page-button">
             <?php for ($i = 0; $i < $page_button; $i++) {?>
                 <a href="/minyMVC/index.php?class=<?php echo $_GET['class'] ?>&subject=<?php echo $_GET['subject'] ?>&page=<?php echo $i + 1 ?>"><button class="paginate-button f-regular-14"><?php echo $i + 1 ?></button></a>
-            <?php }?>
+            <?php }
+            if ($continue) { ?>
+                <div class="etc"></div>
+                <div class="etc"></div>
+                <div class="etc"></div>
+            <?php } ?>
         </div>
     </div>
 </div>
