@@ -4,8 +4,8 @@
         <form method="post">
             <p class="form-title f-regular-25">Đăng nhập</p>
             <div class="main-form">
-                <input class="username-input" type="text" name="username" placeholder="Tên đăng nhập" required>
-                <input class="password-input" type="password" name="password" placeholder="Mật khẩu" required>
+                <input class="username-input-login" type="text" name="username" placeholder="Tên đăng nhập" required>
+                <input class="password-input-login" type="password" name="password" placeholder="Mật khẩu" required>
                 <div class="login-messages f-regular-17"></div>
                 <button class="f-bold-15 login-user">Đăng nhập</button>
             </div>

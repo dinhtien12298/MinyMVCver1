@@ -2,9 +2,11 @@
 const classInput = document.getElementsByClassName('class-input')[0];
 const subjectInput = document.getElementsByClassName('subject-input')[0];
 
-searchSubjectsOfClass(classInput.value);
-classInput.onchange = function() {
+if (classInput) {
     searchSubjectsOfClass(classInput.value);
+    classInput.onchange = function() {
+        searchSubjectsOfClass(classInput.value);
+    }
 }
 
 function searchSubjectsOfClass(class_name) {
@@ -65,6 +67,71 @@ function createPost(user_id) {
                     "subject": subject,
                     "content": content,
                     "user_id": user_id
+                }
+            }).then(response => {
+                window.location.href = '/minyMVC/index.php?user';
+            }).catch(error => console.log(error));
+        }
+    }
+}
+
+// updatePostAPI
+function updatePost(post_id) {
+    var confirmCheck = confirm('Bạn đã chắc chắn về nội đung bài viết chưa?');
+    if (confirmCheck) {
+        const title = document.getElementsByClassName('title-input')[0].value;
+        const className = document.getElementsByClassName('class-input')[0].value;
+        const subject = document.getElementsByClassName('subject-input')[0].value;
+        const content = CKEDITOR.instances.content.getData();
+        if (title.length < 1) {
+            alert('Bài viết chưa có tiêu đề!');
+        } else if (content.length < 1) {
+            alert('Bài viết chưa có nội dung!');
+        } else {
+            axios({
+                method: 'GET',
+                url: '/minyMVC/api/updatePostAPI.php',
+                params: {
+                    "title": title,
+                    "class": className,
+                    "subject": subject,
+                    "content": content,
+                    "post_id": post_id
+                }
+            }).then(response => {
+                window.location.href = '/minyMVC/index.php?user';
+            }).catch(error => console.log(error));
+        }
+    }
+}
+
+// updateInfoAPI
+function updateInfo() {
+    var confirmCheck = confirm('Bạn đã chắc muốn thay đổi thông tin?');
+    if (confirmCheck) {
+        const username = document.getElementById('update-userInfo-button').dataset.username;
+        const password = document.getElementsByClassName('password-input-update')[0].value;
+        const phone = document.getElementsByClassName('phone-input-update')[0].value;
+        const email = document.getElementsByClassName('email-input-update')[0].value;
+        const working = document.getElementsByClassName('working-input-update')[0].value;
+        if (password.length < 1) {
+            alert('Bạn chưa điền mật khẩu!');
+        } else if (phone.length < 1) {
+            alert('Bạn chưa điền số điện thoại!');
+        } else if (email.length < 1) {
+            alert('Bạn chưa điền Email!');
+        } else if (working.length < 1) {
+            alert('Bạn chưa điền nơi học tập/làm việc!');
+        } else {
+            axios({
+                method: 'GET',
+                url: '/minyMVC/api/updateInfoAPI.php',
+                params: {
+                    "username": username,
+                    "password": password,
+                    "phone": phone,
+                    "email": email,
+                    "working": working
                 }
             }).then(response => {
                 window.location.href = '/minyMVC/index.php?user';

@@ -13,11 +13,24 @@
             <div class="form-element double-element">
                 <div>
                     <label for="class">Lớp</label>
-                    <input class="class-input" type="text" name="class" value="<?php echo $post->class ?>">
+                    <select class="class-input" name="class" required>
+                        <?php foreach ($all_classes as $class) {?>
+                            <option
+                                value="<?php echo $class->class ?>"
+                                <?php if ($class->class == $post->class) {?>
+                                    selected
+                                <?php } ?>
+                            >
+                                <?php echo $class->class ?>
+                            </option>
+                        <?php } ?>
+                    </select>
                 </div>
                 <div>
                     <label for="subject">Chủ đề</label>
-                    <input class="subject-input" type="text" name="subject" value="<?php echo $post->subject ?>">
+                    <select class="subject-input" name="subject" required>
+
+                    </select>
                 </div>
             </div>
             <div class="form-element">
@@ -25,7 +38,7 @@
                 <textarea class="content-input" name="content" required><?php echo $post->content ?></textarea>
                 <script>CKEDITOR.replace( 'content' )</script>
             </div>
-            <button type="submit" name="submitUpdate">Cập nhật</button>
+            <button onclick="updatePost(<?php echo $post->id ?>)">Cập nhật</button>
         </form>
     </div>
 </div>

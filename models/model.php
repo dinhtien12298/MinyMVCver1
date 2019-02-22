@@ -83,6 +83,22 @@
             ");
             return $create;
         }
+        // updatePostAPI
+        public function updatePost($post_id, $title, $subject_id, $content) {
+            $update = $this->execute("
+                UPDATE posts SET title = '$title', subject_id = $subject_id, content = '$content'
+                WHERE id = $post_id
+            ");
+            return $update;
+        }
+        // updateInfoAPI
+        public function updateInfo($username, $password, $phone, $email, $working) {
+            $update = $this->execute("
+                UPDATE users SET password = '$password', phone = $phone, email = '$email', working = '$working'
+                WHERE username = '$username'
+            ");
+            return $update;
+        }
 
         // BannerController
         public function postInfoForBanner($post_id) {

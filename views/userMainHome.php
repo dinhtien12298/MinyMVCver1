@@ -5,8 +5,10 @@
             <li onclick="directTo('/minyMVC/index.php?user#post-management')"><a href="/minyMVC/index.php?user#post-management">Quản lý bài viết</a></li>
             <li onclick="directTo('/minyMVC/index.php?user#post-create')"><a href="/minyMVC/index.php?user#post-create">Đăng bài</a></li>
         </ul>
-        <?php if ( isset($_GET['update']) ) {
+        <?php if (isset($_GET['update'])) {
             require_once 'controllers/users/updatePostController.php';
+        } elseif (isset($_GET['updateInfo'])) {
+            require_once 'controllers/users/updateInfoController.php';
         } else {
             require_once 'controllers/users/mainHomeController.php';
         } ?>

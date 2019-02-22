@@ -215,12 +215,13 @@ function logOut() {
 }
 
 // loginAPI
+
 if (document.getElementsByClassName('login-user')[0]) {
     var loginUser = document.getElementsByClassName('login-user')[0];
     loginUser.onclick = function(event) {
         event.preventDefault();
-        const username = document.getElementsByClassName('username-input')[0].value;
-        const password = document.getElementsByClassName('password-input')[0].value;
+        var username = document.getElementsByClassName('username-input-login')[0].value;
+        var password = document.getElementsByClassName('password-input-login')[0].value;
         var loginMessages = document.getElementsByClassName('login-messages')[0];
         axios({
             method: 'GET',

@@ -9,7 +9,7 @@
                 </div>
             <?php } ?>
         </div>
-        <div class="update-button"><button class="f-medium-17">Cập nhật thông tin</button></div>
+        <div class="update-button"><button onclick="directTo('/minyMVC/index.php?user&updateInfo')" class="f-medium-17">Cập nhật thông tin</button></div>
     </div>
     <!-- END USER INFORMATION -->
 
