@@ -17,12 +17,14 @@
             echo $update;
         }
 
-        private function searchSubjectId($class, $subject) {
+        private function searchSubjectId($class, $subject)
+        {
             $subject_id = $this->model->searchSubjectId($class, $subject)->id;
             return $subject_id;
         }
 
-        private function updatePost($post_id, $title, $subject_id, $content) {
+        private function updatePost($post_id, $title, $subject_id, $content)
+        {
             $update = $this->model->updatePost($post_id, $title, $subject_id, $content);
             if (!$update) {
                 return 'Cập nhật bài viết không thành công!';

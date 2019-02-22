@@ -1,7 +1,8 @@
 <?php
     class UpdatePostController {
         public $model;
-        public function __construct() {
+        public function __construct()
+        {
             $this->model = new model();
             $post_id = isset($_GET['update']) ? $_GET['update'] : '';
             $post = $this->model->fetchPostDetail($post_id);

@@ -12,7 +12,8 @@
             echo $delete_status;
         }
 
-        private function deletePost($post_id) {
+        private function deletePost($post_id)
+        {
             $delete = $this->model->deletePost($post_id);
             if (!$delete) {
                 return "Xóa bài viết không thành công!";

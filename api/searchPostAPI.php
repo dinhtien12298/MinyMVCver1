@@ -12,7 +12,8 @@
             echo $data;
         }
 
-        private function searchPosts($keyword) {
+        private function searchPosts($keyword)
+        {
             $data = $this->model->searchPostKeyword("$keyword");
             if ($data) {
                 return json_encode($data);

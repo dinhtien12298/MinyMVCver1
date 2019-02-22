@@ -16,7 +16,8 @@
             require_once 'views/homepage.php';
         }
 
-        private function dataContent($list_classes) {
+        private function dataContent($list_classes)
+        {
             $data_content = [];
             $list_buttons = [];
             foreach ($list_classes as $class_name) {

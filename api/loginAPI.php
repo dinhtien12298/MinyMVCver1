@@ -13,7 +13,8 @@
             echo $login;
         }
 
-        private function login($username, $password) {
+        private function login($username, $password)
+        {
             $check = $this->model->checkUser($username, $password);
             if (!$check) {
                 $check_username = $this->model->checkUsername($username);

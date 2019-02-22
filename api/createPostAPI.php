@@ -17,12 +17,14 @@
             echo $create;
         }
 
-        private function searchSubjectId($class, $subject) {
+        private function searchSubjectId($class, $subject)
+        {
             $subject_id = $this->model->searchSubjectId($class, $subject)->id;
             return $subject_id;
         }
 
-        private function createPost($title, $user_id, $subject_id, $content) {
+        private function createPost($title, $user_id, $subject_id, $content)
+        {
             $create = $this->model->createPost($title, $user_id, $subject_id, $content);
             if (!$create) {
                 return "Đăng bài viết không thành công!";

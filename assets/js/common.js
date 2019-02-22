@@ -215,7 +215,6 @@ function logOut() {
 }
 
 // loginAPI
-
 if (document.getElementsByClassName('login-user')[0]) {
     var loginUser = document.getElementsByClassName('login-user')[0];
     loginUser.onclick = function(event) {
@@ -245,8 +244,8 @@ if (document.getElementsByClassName('login-user')[0]) {
 
 // signupAPI
 if (document.getElementsByClassName('signup-user')[0]) {
-    var loginUser = document.getElementsByClassName('signup-user')[0];
-    loginUser.onclick = function(event) {
+    var signupUser = document.getElementsByClassName('signup-user')[0];
+    signupUser.onclick = function(event) {
         event.preventDefault();
         var confirmCheck = confirm('Bạn đã chắc với thông tin của mình chưa?');
         if (confirmCheck) {

@@ -16,7 +16,8 @@
             echo $update;
         }
 
-        private function update($username, $password, $phone, $email, $working) {
+        private function update($username, $password, $phone, $email, $working)
+        {
             $update = $this->model->updateInfo($username, $password, $phone, $email, $working);
             if (!$update) {
                 return 'Cập nhật thông tin thất bại!';

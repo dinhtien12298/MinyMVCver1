@@ -1,7 +1,8 @@
 <?php
     class Model {
         // Lấy tất cả bản ghi
-        public function fetchAllRecords($query) {
+        public function fetchAllRecords($query)
+        {
             global $conn;
             $sql_query = mysqli_query($conn, $query);
             $list_data = [];
@@ -12,7 +13,8 @@
         }
 
         // Lấy một bản ghi
-        public function fetchARecord($query) {
+        public function fetchARecord($query)
+        {
             global $conn;
             $sql_query = mysqli_query($conn, $query);
             $data = mysqli_fetch_object($sql_query);
@@ -20,7 +22,8 @@
         }
 
         // Kiểm tra bản ghi có tồn tại
-        public function checkExistRecord($query) {
+        public function checkExistRecord($query)
+        {
             global $conn;
             $sql_query = mysqli_query($conn, $query);
             if (mysqli_num_rows($sql_query) > 0) {
@@ -30,14 +33,16 @@
         }
 
         // Kiểm tra số bản ghi
-        public function countRecords($query) {
+        public function countRecords($query)
+        {
             global $conn;
             $sql_query = mysqli_query($conn, $query);
             return mysqli_num_rows($sql_query);
         }
 
         // Thực thi một câu lệnh
-        public function execute($query) {
+        public function execute($query)
+        {
             global $conn;
             $sql_query = mysqli_query($conn, $query);
             if (!$sql_query) {
@@ -48,12 +53,14 @@
 
         // API
         // SearchPost
-        public function searchPostKeyword($keyword) {
+        public function searchPostKeyword($keyword)
+        {
             $data = $this->fetchAllRecords("SELECT * FROM posts WHERE title like '%$keyword%'");
             return $data;
         }
         // SearchTabPost
-        public function searchTabPost($subject_id, $limit) {
+        public function searchTabPost($subject_id, $limit)
+        {
             $data = $this->fetchAllRecords("
                 SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
                 FROM posts
@@ -66,17 +73,20 @@
             return $data;
         }
         // SearchSubjectAPI
-        public function searchClassIdByClass($class) {
+        public function searchClassIdByClass($class)
+        {
             $data = $this->fetchARecord("SELECT * FROM classes WHERE class = '$class'");
             return $data;
         }
         // DeletePostAPI
-        public function deletePost($post_id) {
+        public function deletePost($post_id)
+        {
             $delete = $this->execute("DELETE FROM posts WHERE id = $post_id");
             return $delete;
         }
         // CreatePostAPI
-        public function createPost($title, $user_id, $subject_id, $content) {
+        public function createPost($title, $user_id, $subject_id, $content)
+        {
             $create = $this->execute("
                 INSERT INTO posts(title, user_id, subject_id, content)
                 VALUES ('$title', $user_id, $subject_id, '$content')
@@ -84,7 +94,8 @@
             return $create;
         }
         // updatePostAPI
-        public function updatePost($post_id, $title, $subject_id, $content) {
+        public function updatePost($post_id, $title, $subject_id, $content)
+        {
             $update = $this->execute("
                 UPDATE posts SET title = '$title', subject_id = $subject_id, content = '$content'
                 WHERE id = $post_id
@@ -92,7 +103,8 @@
             return $update;
         }
         // updateInfoAPI
-        public function updateInfo($username, $password, $phone, $email, $working) {
+        public function updateInfo($username, $password, $phone, $email, $working)
+        {
             $update = $this->execute("
                 UPDATE users SET password = '$password', phone = $phone, email = '$email', working = '$working'
                 WHERE username = '$username'
@@ -101,7 +113,8 @@
         }
 
         // BannerController
-        public function postInfoForBanner($post_id) {
+        public function postInfoForBanner($post_id)
+        {
             $data = $this->fetchARecord("
                 SELECT title, classes.class, subjects.subject
                 FROM posts
@@ -113,25 +126,41 @@
         }
 
         // MenuController
-        public function fetchAllClasses() {
+        public function fetchAllClasses()
+        {
             $data = $this->fetchAllRecords("SELECT * FROM classes");
             return $data;
         }
-        public function searchSubjectsOfClass($class_id) {
+        public function searchSubjectsOfClass($class_id)
+        {
             $data = $this->fetchAllRecords("SELECT * FROM subjects WHERE class_id=$class_id");
             return $data;
         }
 
+        // FooterController
+        public function fetchAllSubjects()
+        {
+            $data = $this->fetchAllRecords("
+                SELECT subjects.id, subject, classes.class
+                FROM subjects
+                INNER JOIN classes ON subjects.class_id = classes.id
+            ");
+            return $data;
+        }
+
         // SidebarController
-        public function fetchAllAdvertiments() {
+        public function fetchAllAdvertiments()
+        {
             $data = $this->fetchAllRecords("SELECT * FROM advertiments");
             return $data;
         }
-        public function searchSubjectIdOfPost($post_id) {
+        public function searchSubjectIdOfPost($post_id)
+        {
             $data = $this->fetchARecord("SELECT subject_id FROM posts WHERE id = $post_id");
             return $data;
         }
-        public function findPostRelated($post_id, $subject_id) {
+        public function findPostRelated($post_id, $subject_id)
+        {
             $data = $this->fetchAllRecords("
                 SELECT id, title 
                 FROM posts 
@@ -143,7 +172,8 @@
         }
 
         // CategoryController
-        public function fetchLastedPostForPage($start_number) {
+        public function fetchLastedPostForPage($start_number)
+        {
             $data = $this->fetchAllRecords("
                 SELECT posts.id, title, view_num, like_num, content, fullname
                 FROM posts
@@ -152,7 +182,8 @@
             ");
             return $data;
         }
-        public function fetchPostsForPage($start_number, $subject_id) {
+        public function fetchPostsForPage($start_number, $subject_id)
+        {
             $data = $this->fetchAllRecords("
                 SELECT posts.id, title, view_num, like_num, content, fullname
                 FROM posts
@@ -162,7 +193,8 @@
             ");
             return $data;
         }
-        public function searchSubjectId($class, $subject) {
+        public function searchSubjectId($class, $subject)
+        {
             $data = $this->fetchARecord("
                 SELECT subjects.id, subjects.subject, classes.class
                 FROM subjects
@@ -172,7 +204,8 @@
             ");
             return $data;
         }
-        public function countPosts($start_number, $subject_id) {
+        public function countPosts($start_number, $subject_id)
+        {
             if ($subject_id == 0) {
                 $query = "SELECT * FROM posts LIMIT $start_number, 28";
             } else {
@@ -182,7 +215,8 @@
         }
 
         // DetailController
-        public function fetchPostDetail($post_id) {
+        public function fetchPostDetail($post_id)
+        {
             $data = $this->fetchARecord("
                 SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
                 FROM posts
@@ -193,7 +227,8 @@
             ");
             return $data;
         }
-        public function fetchPostsForDataMorePost($post_id, $class) {
+        public function fetchPostsForDataMorePost($post_id, $class)
+        {
             $data = $this->fetchAllRecords("
                 SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
                 FROM posts
@@ -208,7 +243,8 @@
         }
 
         // HomepageController
-        public function fetchSubjectButton($class) {
+        public function fetchSubjectButton($class)
+        {
             $data = $this->fetchAllRecords("
                 SELECT subjects.id, subject, classes.class
                     FROM subjects, classes
@@ -218,7 +254,8 @@
             ");
             return $data;
         }
-        public function fetchRelatedPosts() {
+        public function fetchRelatedPosts()
+        {
             $data = $this->fetchAllRecords("
                 SELECT posts.id, title, view_num, like_num, content, fullname
                 FROM posts
@@ -227,7 +264,8 @@
             ");
             return $data;
         }
-        public function fetchPostsByClassesAndSubjects($class, $subject) {
+        public function fetchPostsByClassesAndSubjects($class, $subject)
+        {
             $data = $this->fetchAllRecords("
                 SELECT posts.id, title, view_num, like_num, content, fullname, classes.class, subjects.subject
                 FROM posts
@@ -243,13 +281,15 @@
 
         // Users
         // LoginController
-        public function checkUser($username, $password) {
+        public function checkUser($username, $password)
+        {
             $check = $this->checkExistRecord("
                 SELECT * FROM users WHERE username = '$username' AND password = '$password'
             ");
             return $check;
         }
-        public function checkUsername($username) {
+        public function checkUsername($username)
+        {
             $check = $this->checkExistRecord("
                 SELECT * FROM users WHERE username = '$username'
             ");
@@ -257,11 +297,13 @@
         }
 
         // MainHomeController
-        public function foundUser($username) {
+        public function foundUser($username)
+        {
             $data = $this->fetchARecord("SELECT * FROM users WHERE username = '$username'");
             return $data;
         }
-        public function fetchPostsByUser($user_id) {
+        public function fetchPostsByUser($user_id)
+        {
             $data = $this->fetchAllRecords("
                 SELECT posts.id, title, view_num, like_num, content, classes.class, subjects.subject
                 FROM posts
@@ -272,19 +314,22 @@
             return $data;
         }
         // signUp
-        public function checkEmail($email) {
+        public function checkEmail($email)
+        {
             $check = $this->checkExistRecord("
                 SELECT * FROM users WHERE email = '$email'
             ");
             return $check;
         }
-        public function checkPhone($phone) {
+        public function checkPhone($phone)
+        {
             $check = $this->checkExistRecord("
                 SELECT * FROM users WHERE phone = '$phone'
             ");
             return $check;
         }
-        public function signUpUser($username, $password, $fullname, $birth, $phone, $email, $working) {
+        public function signUpUser($username, $password, $fullname, $birth, $phone, $email, $working)
+        {
             $sign_up = $this->execute("
                 INSERT INTO users(username, password, fullname, birth, phone, email, working)
                 VALUES ('$username', '$password', '$fullname', '$birth', $phone, '$email', '$working')

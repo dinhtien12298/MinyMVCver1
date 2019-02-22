@@ -8,14 +8,11 @@
             require_once 'views/components/footer.php';
         }
 
-        private function dataFooter() {
+        private function dataFooter()
+        {
             $data_footer = [];
             $data_check_name = [];
-            $all_subjects = $this->model->fetchAllRecords("
-                SELECT subjects.id, subject, classes.class
-                FROM subjects, classes
-                WHERE subjects.class_id = classes.id
-            ");
+            $all_subjects = $this->model->fetchAllSubjects();
             foreach ($all_subjects as $subject) {
                 if (!in_array($subject->subject, $data_check_name)) {
                     array_push($data_footer, $subject);

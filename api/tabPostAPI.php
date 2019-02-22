@@ -12,7 +12,8 @@
             echo $data;
         }
 
-        private function searchTabPost($subject_id) {
+        private function searchTabPost($subject_id)
+        {
             $data = $this->model->searchTabPost($subject_id, 6);
             if ($data) {
                 return json_encode($data);

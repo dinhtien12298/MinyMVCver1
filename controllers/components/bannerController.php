@@ -12,7 +12,8 @@
             require_once 'views/components/banner.php';
         }
 
-        private function breadcrumb($post) {
+        private function breadcrumb($post)
+        {
             $breadcrumb = ['trang chủ'];
             if (isset($_GET['class'])) {
                 array_push($breadcrumb, $_GET['class']);

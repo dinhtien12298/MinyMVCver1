@@ -12,7 +12,8 @@
             require_once 'views/users/mainHome.php';
         }
 
-        private function findTotalPostInfo($all_posts) {
+        private function findTotalPostInfo($all_posts)
+        {
             $view_number = 0;
             $like_number = 0;
             foreach ($all_posts as $post) {
@@ -22,7 +23,8 @@
             return [$view_number, $like_number];
         }
 
-        private function getUserInfo($user, $all_posts) {
+        private function getUserInfo($user, $all_posts)
+        {
             $list_info = [];
             $list_info['Tên tài khoản'] = $user->username;
             $list_info['Mật khẩu'] = '**********';

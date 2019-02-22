@@ -21,7 +21,8 @@
             echo $sign_up;
         }
 
-        private function signup($username, $password, $confirm_password, $fullname, $birth, $phone, $email, $working) {
+        private function signup($username, $password, $confirm_password, $fullname, $birth, $phone, $email, $working)
+        {
             if (!$this->checkPassword($password, $confirm_password)) {
                 return 'Mật khẩu không trùng nhau';
             }
@@ -41,24 +42,28 @@
             return 'Đăng ký thành công!';
         }
 
-        private function checkPassword($password, $confirm_password) {
+        private function checkPassword($password, $confirm_password)
+        {
             if ($password != $confirm_password) {
                 return false;
             }
             return true;
         }
 
-        private function checkUsername($username) {
+        private function checkUsername($username)
+        {
             $check = $this->model->checkUsername($username);
             return $check;
         }
 
-        private function checkEmail($email) {
+        private function checkEmail($email)
+        {
             $check = $this->model->checkEmail($email);
             return $check;
         }
 
-        private function checkPhone($phone) {
+        private function checkPhone($phone)
+        {
             $check = $this->model->checkPhone($phone);
             return $check;
         }

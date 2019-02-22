@@ -10,7 +10,8 @@
             require_once 'views/components/menu.php';
         }
 
-        private function dataMenu($all_classes) {
+        private function dataMenu($all_classes)
+        {
             foreach ($all_classes as $class) {
                 $index = array_search($class, $all_classes);
                 $class_id = $class->id;

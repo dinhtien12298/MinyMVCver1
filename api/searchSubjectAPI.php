@@ -12,7 +12,8 @@
             echo $data;
         }
 
-        private function searchSubjects($class) {
+        private function searchSubjects($class)
+        {
             $class_id = $this->model->searchClassIdByClass($class)->id;
             $data = $this->model->searchSubjectsOfClass($class_id);
             if ($data) {

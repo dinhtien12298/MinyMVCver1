@@ -9,7 +9,8 @@
             $this->defineCategory($class, $subject);
         }
 
-        private function defineCategory($class, $subject) {
+        private function defineCategory($class, $subject)
+        {
             if (isset($_GET['subject']) || $class == 'Mới nhất') {
                 $page = ($_GET['page']);
                 $tab_title = ($class == 'Mới nhất') ? $class : $subject;
@@ -24,7 +25,8 @@
             }
         }
 
-        private function dataContentBasic($class) {
+        private function dataContentBasic($class)
+        {
             $class_id = $this->model->searchClassIdByClass($class)->id;
             $all_subjects = $this->model->searchSubjectsOfClass($class_id);
             $data_content = [];
@@ -35,7 +37,8 @@
             return $data_content;
         }
 
-        private function dataContentDetail($page, $class, $subject) {
+        private function dataContentDetail($page, $class, $subject)
+        {
             $start_number = 9 * ($page - 1);
             if  ($class == 'Mới nhất') {
                 $subject_id = 0;
@@ -50,7 +53,8 @@
             return [$data_content, $page_button, $continue];
         }
 
-        private function calculatePageNumber($page, $number_of_records) {
+        private function calculatePageNumber($page, $number_of_records)
+        {
             $continue = false;
             if ($number_of_records <= 9) {
                 $page_number = $page;
