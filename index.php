@@ -1,24 +1,20 @@
 <?php
     session_start();
-
-    require_once 'config.php';
-    require_once 'models/model.php';
-
-    if (isset($_GET['class'])) {
-        $controller = 'category';
-    } elseif (isset($_GET['post'])) {
-        $controller = 'detail';
-    } elseif (isset($_GET['user']) && isset($_SESSION['username'])) {
-        $controller = 'userMainHome';
-    } else {
-        $controller = 'homepage';
+    class Index
+    {
+        public $controller;
+        public function __construct()
+        {
+            if (isset($_GET['class'])) {
+                $this->controller = 'Category';
+            } elseif (isset($_GET['post'])) {
+                $this->controller = 'Detail';
+            } elseif (isset($_GET['user']) && isset($_SESSION['username'])) {
+                $this->controller = 'UserMainHome';
+            } else {
+                $this->controller = 'Homepage';
+            }
+            require_once 'Controllers/Controller.php';
+        }
     }
-
-    $file_controller = "controllers/$controller" . "Controller.php";
-    if (file_exists($file_controller)) {
-        require_once 'views/container.php';
-    } else {
-        echo 'Cannot find the file!';
-    }
-
-    mysqli_close($conn);
+    new Index();
